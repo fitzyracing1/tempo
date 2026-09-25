@@ -2,9 +2,13 @@
 
 Temperature AI for iterative spec rewriting. Local Grok desk. No API key.
 
+**Site:** https://fitzyracing1.github.io/tempo/
+
 Seed schedule: **H H L H** (`1.0, 1.0, 0.2, 1.0`).
 
 ## Ask the AI
+
+In the browser on the site, or locally:
 
 ```bash
 python3 ask.py "what is the next t?"
@@ -22,22 +26,7 @@ python3 mock_server.py --port 3000
 
 Open http://127.0.0.1:3000
 
-| method | path | body |
-|---|---|---|
-| GET | / | chat UI |
-| GET | /state | temps + spec |
-| GET | /help | routes |
-| POST | /ask | `{"question":"what is the next t?"}` |
-| POST | /decide | `{"brain":"grok"}` |
-| POST | /spec | `{"cur":"..."}` |
-| POST | /reset | `{}` |
-| POST | /commit | append last t |
+## Pages
 
-## Layout
-
-- `tempo.py` — grok + rule brains
-- `desk.py` — question router
-- `ask.py` — CLI
-- `mock_server.py` — stdlib HTTP desk
-- `static/index.html` — chat UI
-- `data/seed.json` — seed + sample questions
+Static site lives in `docs/`. Workflow `.github/workflows/pages.yml` deploys it.
+If the first Actions run asks for Pages permission, enable GitHub Pages (Source: GitHub Actions) on the repo.
