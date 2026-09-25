@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>TEMPO desk</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font: 16px/1.45 system-ui, sans-serif; margin: 0; background: #0e1116; color: #e8edf4; }
+    header { padding: 16px 20px; border-bottom: 1px solid #2a3140; }
+    header strong { letter-spacing: .08em; }
+    header span { color: #8b98a8; font-size: 13px; margin-left: 8px; }
+    #log { padding: 16px 20px 96px; max-width: 760px; }
+    .row { margin: 0 0 14px; }
+    .q { color: #8ec8ff; }
+    .a { white-space: pre-wrap; background: #161b24; border: 1px solid #2a3140; border-radius: 10px; padding: 12px 14px; margin-top: 6px; }
+    form { position: fixed; left: 0; right: 0; bottom: 0; display: flex; gap: 8px; padding: 12px 16px; background: #0e1116; border-top: 1px solid #2a3140; }
+    input { flex: 1; font: inherit; padding: 12px 14px; border-radius: 10px; border: 1px solid #3a4458; background: #161b24; color: inherit; }
+    button { font: inherit; padding: 12px 16px; border-radius: 10px; border: 0; background: #3d8bfd; color: #fff; }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>TEMPO</strong>
+    <span>Grok desk · no API key · seed HHLH</span>
+  </header>
+  <div id="log"></div>
+  <form id="f">
+    <input id="q" autocomplete="off" placeholder="Ask TEMPO…  e.g. what is the next t?"/>
+    <button>Ask</button>
+  </form>
+  <script>
+    const log = document.getElementById('log');
+    const input = document.getElementById('q');
+    function add(q, a) {
+      const row = document.createElement('div');
+      row.className = 'row';
+      row.innerHTML = '<div class="q"></div><div class="a"></div>';
+      row.querySelector('.q').textContent = q;
+      row.querySelector('.a').textContent = a;
+      log.appendChild(row);
+      row.scrollIntoView({behavior:'smooth', block:'end'});
+    }
+    document.getElementById('f').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const q = input.value.trim();
+      if (!q) return;
+      input.value = '';
+      add(q, '…');
+      const node = log.lastElementChild.querySelector('.a');
+      try {
+        const r = await fetch('/ask', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({question: q})
+        });
+        const j = await r.json();
+        node.textContent = j.answer || JSON.stringify(j);
+      } catch (err) {
+        node.textContent = String(err);
+      }
+    });
+    add('desk', 'Ask anything about the schedule, next t, finish rules, or gaps.\nTry: what is the next t?');
+  </script>
+</body>
+</html>
