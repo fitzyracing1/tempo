@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>TEMPO — temperature desk</title>
+  <meta name="description" content="TEMPO picks the next rewrite temperature for an iterative AI spec. Local Grok desk. No API key. Seed HHLH."/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <nav>
+    <strong>TEMPO</strong>
+    <div class="links">
+      <a href="#desk">Ask</a>
+      <a href="#how">How</a>
+      <a href="https://github.com/fitzyracing1/tempo">GitHub</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <p class="kicker">iterative spec temperature</p>
+    <h1>Pick the next <em>t</em>.<br/>Diverge, explore, or converge.</h1>
+    <p class="lede">
+      TEMPO is a local Grok desk that schedules rewrite temperature for an AI spec.
+      Seed <code>H H L H</code>. No Claude. No API key.
+    </p>
+    <div class="tape" id="tape"></div>
+    <p class="cta-row">
+      <a class="btn" href="#desk">Ask TEMPO</a>
+      <a class="btn ghost" href="https://github.com/fitzyracing1/tempo">Clone the repo</a>
+    </p>
+  </header>
+
+  <section id="desk">
+    <h2>Desk</h2>
+    <p class="hint">Ask in the box. Runs entirely in the browser.</p>
+    <div id="log"></div>
+    <form id="f">
+      <input id="q" autocomplete="off" placeholder="what is the next t?"/>
+      <button type="submit">Ask</button>
+    </form>
+    <div class="chips">
+      <button type="button" data-q="what is the next t?">next t</button>
+      <button type="button" data-q="why not finish?">finish?</button>
+      <button type="button" data-q="what is missing?">gaps</button>
+      <button type="button" data-q="show the schedule">schedule</button>
+      <button type="button" data-q="who are you?">who</button>
+    </div>
+  </section>
+
+  <section id="how">
+    <h2>Rules</h2>
+    <ol class="rules">
+      <li>Big rewrite → go <b>low</b> and consolidate.</li>
+      <li>Tiny change and still gappy → go <b>high</b> and break the plateau.</li>
+      <li>Never three highs in a row. Never three lows unless finishing.</li>
+      <li>FINISH only after a low pass, small change, and a complete spec: system prompt, tools, and ≥5 eval arrows.</li>
+    </ol>
+    <div class="bands">
+      <div><span class="pill H">H</span> t ≥ 0.7 diverge</div>
+      <div><span class="pill M">M</span> 0.4–0.7 explore</div>
+      <div><span class="pill L">L</span> t ≤ 0.4 converge</div>
+    </div>
+  </section>
+
+  <section id="run">
+    <h2>Run local</h2>
+    <pre><code>git clone https://github.com/fitzyracing1/tempo.git
+cd tempo
+python3 ask.py "what is the next t?"
+python3 mock_server.py --port 3000</code></pre>
+  </section>
+
+  <footer>
+    <a href="https://github.com/fitzyracing1/tempo">fitzyracing1/tempo</a>
+    · public · no key
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
