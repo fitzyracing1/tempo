@@ -1,0 +1,11 @@
+{
+  "seed": [1.0, 1.0, 0.2, 1.0],
+  "modes": ["H", "H", "L", "H"],
+  "brief": "Build TEMPO itself: an iterative spec rewriter whose next temperature is chosen from change-ratio, high/low run length, and spec completeness.",
+  "questions": [
+    "what is the next t?",
+    "why not finish?",
+    "what is missing from the spec?",
+    "who are you?"
+  ]
+}
