@@ -30,3 +30,11 @@ Open http://127.0.0.1:3000
 
 Static site lives in `docs/`. Workflow `.github/workflows/pages.yml` deploys it.
 If the first Actions run asks for Pages permission, enable GitHub Pages (Source: GitHub Actions) on the repo.
+
+## Plans
+
+This project is free, and its license stays as is. Support it through [GitHub Sponsors](https://github.com/sponsors/fitzyracing1):
+
+- **Free**: use the code, community support.
+- **Pro ($49/month)**: priority issues and support.
+- **Team ($199/month)**: priority support for your team plus early access.
